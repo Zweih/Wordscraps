@@ -30,3 +30,7 @@ The scripts includes will be:
 - `board.js` to display a board and manipulate the words columns and rows
 - `word.js` to handle word logic 
 - `dictionary.js` to generate boards from a predetermined dictionary
+
+### Wireframe
+
+![wireframe](https://raw.githubusercontent.com/Zweih/wordscraps/master/wireframe.png)
