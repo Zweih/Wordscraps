@@ -11,7 +11,7 @@ $(document).ready(() => {
     const gridRow = $(`<div class="grid-row" id="${y}"></div>`);
     for(let x = 0; x < 10; x++) {
       const className = `square${board.grid[y][x] ? " letter" : " no-letter"}`;
-      const square = $(`<div class="${className}" id="${x}">${board.grid[y][x] || ""}</div>`);
+      const square = $(`<div class="${className}" id="${x}">${board.grid[y][x] || " "}</div>`);
       square.appendTo(gridRow);
     }
 

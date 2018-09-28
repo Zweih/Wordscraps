@@ -16,7 +16,7 @@ class Board {
     console.log(this.letterPool);
     console.log(this.wordPool);
 
-    this.grid = this.across("yess", [5,5], 0)
+    this.grid = this.across(this.wordPool[0], [5,5], 0)
     console.log(this.grid);
   }
 
