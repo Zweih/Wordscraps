@@ -33,4 +33,4 @@ The scripts includes will be:
 
 ### Wireframe
 
-![wireframe](https://raw.githubusercontent.com/Zweih/wordscraps/master/wireframe.png)
+![wireframe](https://raw.githubusercontent.com/Zweih/wordscraps/master/docs/wireframe.png)
