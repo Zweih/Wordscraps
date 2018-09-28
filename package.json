@@ -12,5 +12,9 @@
     "url": "https://github.com/zweih/wordscraps/issues"
   },
   "homepage": "https://github.com/zweih/wordscraps#readme",
-  "dependencies": {}
+  "dependencies": {
+    "@babel/core": "^7.1.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0"
+  }
 }
