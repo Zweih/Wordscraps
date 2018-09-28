@@ -2,7 +2,7 @@ const allWords = require("./words.json");
 const fs = require("fs");
 
 const validWords = {};
-const letterPools = {};
+const subPools = {};
 
 for(let i = 0; i < allWords.length; i++) {
   currentWord = allWords[i].toString();
@@ -17,23 +17,32 @@ for(let i = 0; i < allWords.length; i++) {
     }
 
     if(currentWord.length === 6) {
-      letterPools[alphaKey] = []; 
+      subPools[alphaKey] = []; 
     }
   }
 }
 
 const validKeys = Object.keys(validWords);
-const poolKeys = Object.keys(letterPools);
+const poolKeys = Object.keys(subPools);
 
 for(let i = 0; i < validKeys.length; i++) {
   for(let j = 0; j < poolKeys.length; j++) {
     if(poolKeys[j].includes(validKeys[i])) {
-      letterPools[poolKeys[j]] = letterPools[poolKeys[j]].concat(validWords[validKeys[i]]);
+      subPools[poolKeys[j]] = subPools[poolKeys[j]].concat(validWords[validKeys[i]]);
     }
   }
 }
 
+const letterPools = {};
+
+for(let i = 0; i < poolKeys.length; i++) {
+  if(subPools[poolKeys[i]].length > 5) {
+    letterPools[poolKeys[i]] = subPools[poolKeys[i]];
+  }
+}
+
 const content = JSON.stringify(letterPools);
+console.log(Object.keys(letterPools).length);
 
 fs.writeFile("./letter-pools.json", content, 'utf8', function (err) {
     if (err) {
