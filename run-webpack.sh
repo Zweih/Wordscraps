@@ -1,1 +1,1 @@
-webpack --watch ./lib/main.js -o ./src/todo.js --mode=development
+webpack --watch ./libs/main.js -o ./src/bundle.js --mode=development
