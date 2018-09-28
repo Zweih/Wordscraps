@@ -1,0 +1,1 @@
+webpack --watch ./lib/main.js -o ./src/todo.js --mode=development
