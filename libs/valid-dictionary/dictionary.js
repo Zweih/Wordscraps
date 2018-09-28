@@ -1,5 +1,5 @@
-const letterPools = require("./letter-pools.js");
+const letterPools = require("./letter-pools");
 
 class Dictionary {
-  
+
 }

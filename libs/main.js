@@ -1,1 +1,1 @@
-console.log("begin");
+const Board = require("./board");

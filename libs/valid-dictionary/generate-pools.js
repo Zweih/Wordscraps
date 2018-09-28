@@ -1,4 +1,4 @@
-const allWords = require("./words.json");
+const allWords = require("./words");
 const fs = require("fs");
 
 const validWords = {};
@@ -33,18 +33,18 @@ for(let i = 0; i < validKeys.length; i++) {
   }
 }
 
-const letterPools = {};
+const wordPools = {};
 
 for(let i = 0; i < poolKeys.length; i++) {
   if(subPools[poolKeys[i]].length > 5) {
-    letterPools[poolKeys[i]] = subPools[poolKeys[i]];
+    wordPools[poolKeys[i]] = subPools[poolKeys[i]];
   }
 }
 
-const content = JSON.stringify(letterPools);
-console.log(Object.keys(letterPools).length);
+const content = JSON.stringify(wordPools);
+console.log(Object.keys(wordPools).length);
 
-fs.writeFile("./letter-pools.json", content, 'utf8', function (err) {
+fs.writeFile("./word-pools.json", content, 'utf8', function (err) {
     if (err) {
         return console.log(err);
     }
