@@ -1,7 +1,7 @@
 const board = require("./pine1.json");
 
 let word = "";
-const pool = {};
+let pool = {};
 
 $(document).ready(() => {
   for(let y = 0; y < board.y; y++) {
@@ -27,14 +27,34 @@ $(document).ready(() => {
 
     letter.appendTo(`#${i % 3}.pool-row`).click(letterClick);
   }
+
+  $(".pool-button").click(tryWord);
 });
 
 const letterClick = (event) => {
-  word += event.target.outerText;
+  const letter = event.target.outerText;
 
-  if(!pool[event.target.outerText]) {
-    pool[event.target.outerText] = true;
+  if(!pool[letter]) {
+    pool[letter] = true;
     console.log(pool);
+    word += letter;
   }
 }
 
+const tryWord = () => {
+  if(Object.keys(board.words).includes(word)){
+    uncoverWord(word);
+    word = "";
+    pool = {};
+  }
+}
+
+const uncoverWord = (word) => {
+  const letterArr = word.split("");
+  const posArr = board.words[word];
+  
+  for(let i = 0; i < letterArr.length; i++) {
+    const square = $(`#${posArr[i][0]}.grid-row #${posArr[i][1]}.square`);
+    square.html(letterArr[i]);
+  } 
+}
