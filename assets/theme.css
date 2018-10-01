@@ -7,15 +7,11 @@ body {
 }
 
 .board {
-  background-color: darkblue;
+  background-color: #dedede;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* max-width: 1200px;
-  min-width: 600px;
-  max-height: 1200px;
-  min-height: 600px; */
 }
 
 .grid-row {
@@ -25,8 +21,8 @@ body {
 }
 
 .square {
-  background-color: olive;
-  border: 1px solid olive;
+  background-color: #dedede;
+  border: 1px solid #dedede;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +40,7 @@ body {
 .letter {
   border: 1px solid blueviolet;
   border-radius: 3px;
-  background-color: darkcyan;
+  background-color: rgba(14, 216, 216, 0.418);
 }
 
 .pool {
