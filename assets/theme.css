@@ -46,8 +46,10 @@ body {
 .pool {
   height: calc((100vw - 27px) / 1.5);
   width: calc((100vw - 27px) / 1.5);
-  max-height: 400px;
-  max-width: 400px;
+  /* max-height: 400px;
+  max-width: 400px; */
+  max-height: 300px;
+  max-width: 300px;
   min-height: 235px;
   min-width: 235px;
   background-color: plum;
@@ -68,8 +70,10 @@ body {
   margin: 5px 5px 5px 5px;
   width: calc((100vw - 27px) / 7);
   height: calc((100vw - 27px) / 7);
-  max-width: 95px;
-  max-height: 95px;
+  /* max-width: 95px;
+  max-height: 95px; */
+  max-height: 70px;
+  max-width: 70px;
   min-width: 55px;
   min-height: 55px;
   background-color: pink;
@@ -128,10 +132,22 @@ body {
   margin: 20px 0px 0px 0px;
   display: inline-block;
   width: 300px;
-  font-size: 16px;
+  height: 100px;
+  font-size: 50px;
   font-weight: 400;
-  height: 36px;
   text-align: center;
   color: #fff;
   background-color: hotpink;
+}
+
+@media only screen and (max-width: 400px) {
+  .square {
+    font-size: 10vw;
+  }
+}
+
+@media only screen and (min-width: 401px) {
+  .square {
+    font-size: 30px;
+  }
 }

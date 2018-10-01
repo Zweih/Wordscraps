@@ -1,9 +1,16 @@
-const board = require("./puzzle.json");
-
+let board = null;
+let level = 1;
 let word = "";
-const goal = JSON.parse(JSON.stringify(board.words));
+let goal = {};
 
 $(document).ready(() => {
+  generateBoard(level);
+});
+
+const generateBoard = (levelNum) => {
+  board = require(`./puzzles/${levelNum}.json`)
+  goal = JSON.parse(JSON.stringify(board.words));
+
   for(let y = 0; y < board.y; y++) {
     const gridRow = $(`<div class="grid-row" id="${y}"></div>`);
     for(let x = 0; x < board.x; x++) {
@@ -33,7 +40,7 @@ $(document).ready(() => {
   }
 
   $(".pool-button").click(tryWord);
-});
+};
 
 const letterClick = (event) => {
   $(event.target).toggleClass("selected");
@@ -70,6 +77,21 @@ const reset = () => {
   $(".pool-letter").click(letterClick);
   $(".pool-button").click(tryWord);
   $(".pool-letter").removeClass("selected");
+
+  if(Object.keys(goal).length < 1) { 
+    $(".current-word").text("ROUND WIN");
+    $(".current-word").addClass("correct");
+
+    setTimeout(() => {
+        $(".current-word").removeClass("correct");
+      $(".pool-letter").off("click");
+      $(".pool-button").off("click");
+      $(".current-word").text("");
+      $(".board").empty();
+      $(".pool-row").empty();
+      generateBoard(++level);
+    }, 2000);  
+  };
 }
 
 const uncoverWord = (word) => {
@@ -83,8 +105,4 @@ const uncoverWord = (word) => {
   }
 
   delete goal[word];
-
-  if(Object.keys(goal).length < 1) { 
-    $(".current-word").text("ROUND WIN"); 
-  };
 }
