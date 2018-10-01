@@ -1,4 +1,4 @@
-const board = require("./pine1.json");
+const board = require("./puzzle.json");
 
 let word = "";
 let pool = {};
@@ -25,7 +25,11 @@ $(document).ready(() => {
       </div>`
     );
 
-    letter.appendTo(`#${i % 3}.pool-row`).click(letterClick);
+    if(i === 1 || i === 4) {
+      letter.appendTo(`#${i - 1}.pool-row`).click(letterClick);
+    } else {
+      letter.appendTo(`#${(i % 2) + 1}.pool-row`).click(letterClick);
+    }
   }
 
   $(".pool-button").click(tryWord);
@@ -42,6 +46,8 @@ const letterClick = (event) => {
 }
 
 const tryWord = () => {
+  debugger
+
   if(Object.keys(board.words).includes(word)){
     uncoverWord(word);
   }

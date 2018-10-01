@@ -93,18 +93,18 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const board = __webpack_require__(/*! ./pine1.json */ \"./libs/pine1.json\");\n\nlet word = \"\";\nlet pool = {};\n\n$(document).ready(() => {\n  for(let y = 0; y < board.y; y++) {\n    const gridRow = $(`<div class=\"grid-row\" id=\"${y}\"></div>`);\n    for(let x = 0; x < board.x; x++) {\n      const className = `square${board[y][x] ? \" letter\" : \" no-letter\"}`;\n      const square = $(`<div class=\"${className}\" id=\"${x}\"></div>`);\n      square.appendTo(gridRow);\n    }\n\n    gridRow.appendTo(\".board\");\n  }\n\n  for(let i = 0; i < board.letters.length; i++) {  \n    const letter = $(\n      `<div\n        class=\"pool-letter\"\n        id=\"${i}\"\n      >\n        ${board.letters[i]}\n      </div>`\n    );\n\n    letter.appendTo(`#${i % 3}.pool-row`).click(letterClick);\n  }\n\n  $(\".pool-button\").click(tryWord);\n});\n\nconst letterClick = (event) => {\n  const letter = event.target.outerText;\n\n  if(!pool[letter]) {\n    pool[letter] = true;\n    console.log(pool);\n    word += letter;\n  }\n}\n\nconst tryWord = () => {\n  if(Object.keys(board.words).includes(word)){\n    uncoverWord(word);\n  }\n\n  word = \"\";\n  pool = {};\n}\n\nconst uncoverWord = (word) => {\n  const letterArr = word.split(\"\");\n  const posArr = board.words[word];\n\n  for(let i = 0; i < letterArr.length; i++) {\n    const square = $(`#${posArr[i][0]}.grid-row #${posArr[i][1]}.square`);\n    square.html(letterArr[i]);\n  } \n}\n\n//# sourceURL=webpack:///./libs/main.js?");
+eval("const board = __webpack_require__(/*! ./puzzle.json */ \"./libs/puzzle.json\");\n\nlet word = \"\";\nlet pool = {};\n\n$(document).ready(() => {\n  for(let y = 0; y < board.y; y++) {\n    const gridRow = $(`<div class=\"grid-row\" id=\"${y}\"></div>`);\n    for(let x = 0; x < board.x; x++) {\n      const className = `square${board[y][x] ? \" letter\" : \" no-letter\"}`;\n      const square = $(`<div class=\"${className}\" id=\"${x}\"></div>`);\n      square.appendTo(gridRow);\n    }\n\n    gridRow.appendTo(\".board\");\n  }\n\n  for(let i = 0; i < board.letters.length; i++) {  \n    const letter = $(\n      `<div\n        class=\"pool-letter\"\n        id=\"${i}\"\n      >\n        ${board.letters[i]}\n      </div>`\n    );\n\n    if(i === 1 || i === 4) {\n      letter.appendTo(`#${i - 1}.pool-row`).click(letterClick);\n    } else {\n      letter.appendTo(`#${(i % 2) + 1}.pool-row`).click(letterClick);\n    }\n  }\n\n  $(\".pool-button\").click(tryWord);\n});\n\nconst letterClick = (event) => {\n  const letter = event.target.outerText;\n\n  if(!pool[letter]) {\n    pool[letter] = true;\n    console.log(pool);\n    word += letter;\n  }\n}\n\nconst tryWord = () => {\n  debugger\n\n  if(Object.keys(board.words).includes(word)){\n    uncoverWord(word);\n  }\n\n  word = \"\";\n  pool = {};\n}\n\nconst uncoverWord = (word) => {\n  const letterArr = word.split(\"\");\n  const posArr = board.words[word];\n\n  for(let i = 0; i < letterArr.length; i++) {\n    const square = $(`#${posArr[i][0]}.grid-row #${posArr[i][1]}.square`);\n    square.html(letterArr[i]);\n  } \n}\n\n//# sourceURL=webpack:///./libs/main.js?");
 
 /***/ }),
 
-/***/ "./libs/pine1.json":
-/*!*************************!*\
-  !*** ./libs/pine1.json ***!
-  \*************************/
-/*! exports provided: 0, 1, 2, 3, 4, y, x, letters, words, default */
+/***/ "./libs/puzzle.json":
+/*!**************************!*\
+  !*** ./libs/puzzle.json ***!
+  \**************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, y, x, words, letters, default */
 /***/ (function(module) {
 
-eval("module.exports = {\"0\":{\"0\":\"S\",\"1\":\"A\",\"2\":\"V\",\"3\":\"E\"},\"1\":{\"0\":\"A\",\"2\":\"A\",\"4\":\"A\"},\"2\":{\"0\":\"V\",\"2\":\"S\",\"3\":\"A\",\"4\":\"D\"},\"3\":{\"0\":\"E\",\"2\":\"E\",\"4\":\"S\"},\"4\":{\"0\":\"D\"},\"y\":5,\"x\":5,\"letters\":[\"S\",\"A\",\"V\",\"E\",\"D\"],\"words\":{\"SAVED\":[[0,0],[1,0],[2,0],[3,0],[4,0]],\"VASE\":[[0,2],[1,2],[2,2],[3,2]],\"ADS\":[[1,4],[2,4],[3,4]],\"SAVE\":[[0,0],[0,1],[0,2],[0,3]],\"SAD\":[[2,2],[2,3],[2,4]]}};\n\n//# sourceURL=webpack:///./libs/pine1.json?");
+eval("module.exports = {\"0\":{\"2\":\"E\",\"3\":\"J\",\"4\":\"E\",\"5\":\"C\",\"6\":\"T\"},\"1\":{\"0\":\"T\"},\"2\":{\"0\":\"R\",\"1\":\"E\",\"2\":\"J\",\"3\":\"E\",\"4\":\"C\",\"5\":\"T\"},\"3\":{\"0\":\"E\",\"2\":\"E\"},\"4\":{\"0\":\"E\",\"1\":\"R\",\"2\":\"E\",\"3\":\"C\",\"4\":\"T\"},\"5\":{\"2\":\"R\",\"4\":\"E\"},\"6\":{\"3\":\"J\",\"4\":\"E\",\"5\":\"T\"},\"y\":7,\"x\":7,\"words\":{\"TREE\":[[1,0],[2,0],[3,0],[4,0]],\"JEER\":[[2,2],[3,2],[4,2],[5,2]],\"TEE\":[[4,4],[5,4],[6,4]],\"EJECT\":[[0,2],[0,3],[0,4],[0,5],[0,6]],\"REJECT\":[[2,0],[2,1],[2,2],[2,3],[2,4],[2,5]],\"ERECT\":[[4,0],[4,1],[4,2],[4,3],[4,4]],\"JET\":[[6,3],[6,4],[6,5]]},\"letters\":[\"E\",\"J\",\"T\",\"R\",\"C\",\"E\"]};\n\n//# sourceURL=webpack:///./libs/puzzle.json?");
 
 /***/ })
 

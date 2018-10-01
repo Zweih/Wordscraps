@@ -12,10 +12,10 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 600px;
-  min-width: 158px;
-  max-height: 600px;
-  min-height: 158px;
+  /* max-width: 1200px;
+  min-width: 600px;
+  max-height: 1200px;
+  min-height: 600px; */
 }
 
 .grid-row {
@@ -30,8 +30,8 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  max-height: 48px;
-  max-width: 48px;
+  /* max-height: 48px;
+  max-width: 48px; */
   min-height: 14.25px;
   min-width: 14.25px;
   width: calc((100vw - 27px) / 12);
