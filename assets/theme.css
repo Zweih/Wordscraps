@@ -1,12 +1,14 @@
 body {
-  background-color: darkred;
+  background-color: #dedede;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .board {
+  margin-top: 20px;
   background-color: #dedede;
   display: flex;
   justify-content: center;
@@ -26,13 +28,11 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  /* max-height: 48px;
-  max-width: 48px; */
   min-height: 34px;
   min-width: 34px;
-  max-height: 70px;
-  max-width: 70px;
-  font-size: calc((100vw - 27px)/ 11);;
+  max-height: 50px;
+  max-width: 50px;
+  font-size: 50px;
   width: calc((100vw - 27px) / 12);
   height: calc((100vw - 27px) / 12);  
 }
@@ -50,7 +50,7 @@ body {
   max-width: 400px;
   min-height: 235px;
   min-width: 235px;
-  background-color: #bbb;
+  background-color: plum;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -64,6 +64,7 @@ body {
 }
 
 .pool-letter {
+  transition: all .2s ease-in;
   margin: 5px 5px 5px 5px;
   width: calc((100vw - 27px) / 7);
   height: calc((100vw - 27px) / 7);
@@ -75,7 +76,7 @@ body {
   border-radius: 50%;
   display: flex;
   align-items: center;
-  font-size: calc((100vw - 27px)/ 11);;
+  font-size: 50px;
   justify-content: center;
   cursor: pointer;
 }
@@ -85,16 +86,52 @@ body {
     margin-bottom: -32px;
 }
 
-@media screen and (min-width: 500px) {
-  .pool-letter {
-     font-size: 50px;
-  }
-
-  .square {
-     font-size: 50px;
-  }
+.current-word {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  min-width: 235px;
+  font-size: 50px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: plum;
+  padding: 5px;
 }
 
 .selected {
   background: purple;
+}
+
+.square-reveal {
+  transition: all .3s ease-in;
+  background-color: rgb(0, 184, 184);
+  color: white;
+}
+
+.square-correct {
+  transition: all .2s ease-in;
+  color: blueviolet;
+  background-color: rgba(14, 216, 216, 0.418);
+}
+
+.correct {
+  transition: all .2s ease-in;
+  color: cyan;
+}
+
+.incorrect {
+  transition: all .2s ease-in;
+  color: rgb(255, 60, 0);
+}
+
+.pool-button {
+  margin: 20px 0px 0px 0px;
+  display: inline-block;
+  width: 300px;
+  font-size: 16px;
+  font-weight: 400;
+  height: 36px;
+  text-align: center;
+  color: #fff;
+  background-color: hotpink;
 }

@@ -1,7 +1,7 @@
 const board = require("./puzzle.json");
 
 let word = "";
-// let pool = JSON.parse(JSON.stringify(board.pool));
+const goal = JSON.parse(JSON.stringify(board.words));
 
 $(document).ready(() => {
   for(let y = 0; y < board.y; y++) {
@@ -40,19 +40,35 @@ const letterClick = (event) => {
   $(event.target).off("click");
   const letter = event.target.outerText;
   word += letter;
+  $(".current-word").text(word);
   console.log(letter);
 }
 
 const tryWord = () => {
+  $(".pool-letter").off("click");
+  $(".pool-button").off("click");
+  console.log(word);
+
   if(Object.keys(board.words).includes(word)){
     uncoverWord(word);
+    $(".current-word").addClass("correct");
+  } else {
+    $(".current-word").addClass("incorrect");
   }
 
-  console.log(word);
+  setTimeout(() => {
+    reset();
+  }, 1000);  
+}
+
+const reset = () => {
   word = "";
-  // pool = JSON.parse(JSON.stringify(board.pool));
-  $(".pool-letter").off("click");
+  $(".current-word").text(word);
+  $(".current-word").removeClass("incorrect");
+  $(".current-word").removeClass("correct");
+  $(".square").removeClass("square-correct");
   $(".pool-letter").click(letterClick);
+  $(".pool-button").click(tryWord);
   $(".pool-letter").removeClass("selected");
 }
 
@@ -62,6 +78,13 @@ const uncoverWord = (word) => {
 
   for(let i = 0; i < letterArr.length; i++) {
     const square = $(`#${posArr[i][0]}.grid-row #${posArr[i][1]}.square`);
-    square.html(letterArr[i]);
-  } 
+    square.addClass("square-correct square-reveal");
+    square.text(letterArr[i]);
+  }
+
+  delete goal[word];
+
+  if(Object.keys(goal).length < 1) { 
+    $(".current-word").text("ROUND WIN"); 
+  };
 }
