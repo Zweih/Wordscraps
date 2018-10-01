@@ -32,8 +32,11 @@ body {
   align-items: center;
   /* max-height: 48px;
   max-width: 48px; */
-  min-height: 14.25px;
-  min-width: 14.25px;
+  min-height: 34px;
+  min-width: 34px;
+  max-height: 70px;
+  max-width: 70px;
+  font-size: calc((100vw - 27px)/ 11);;
   width: calc((100vw - 27px) / 12);
   height: calc((100vw - 27px) / 12);  
 }
@@ -45,8 +48,12 @@ body {
 }
 
 .pool {
-  height: 100px;
-  width: 100px;
+  height: calc((100vw - 27px) / 1.5);
+  width: calc((100vw - 27px) / 1.5);
+  max-height: 400px;
+  max-width: 400px;
+  min-height: 235px;
+  min-width: 235px;
   background-color: #bbb;
   border-radius: 50%;
   display: flex;
@@ -62,4 +69,36 @@ body {
 
 .pool-letter {
   margin: 5px 5px 5px 5px;
+  width: calc((100vw - 27px) / 7);
+  height: calc((100vw - 27px) / 7);
+  max-width: 95px;
+  max-height: 95px;
+  min-width: 55px;
+  min-height: 55px;
+  background-color: pink;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  font-size: calc((100vw - 27px)/ 11);;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pool-letter:only-child {
+    margin-top: -32px;
+    margin-bottom: -32px;
+}
+
+@media screen and (min-width: 500px) {
+  .pool-letter {
+     font-size: 50px;
+  }
+
+  .square {
+     font-size: 50px;
+  }
+}
+
+.selected {
+  background: purple;
 }

@@ -1,7 +1,7 @@
 const board = require("./puzzle.json");
 
 let word = "";
-let pool = {};
+// let pool = JSON.parse(JSON.stringify(board.pool));
 
 $(document).ready(() => {
   for(let y = 0; y < board.y; y++) {
@@ -23,7 +23,7 @@ $(document).ready(() => {
       >
         ${board.letters[i]}
       </div>`
-    );
+    ); 
 
     if(i === 1 || i === 4) {
       letter.appendTo(`#${i - 1}.pool-row`).click(letterClick);
@@ -36,24 +36,24 @@ $(document).ready(() => {
 });
 
 const letterClick = (event) => {
+  $(event.target).toggleClass("selected");
+  $(event.target).off("click");
   const letter = event.target.outerText;
-
-  if(!pool[letter]) {
-    pool[letter] = true;
-    console.log(pool);
-    word += letter;
-  }
+  word += letter;
+  console.log(letter);
 }
 
 const tryWord = () => {
-  debugger
-
   if(Object.keys(board.words).includes(word)){
     uncoverWord(word);
   }
 
+  console.log(word);
   word = "";
-  pool = {};
+  // pool = JSON.parse(JSON.stringify(board.pool));
+  $(".pool-letter").off("click");
+  $(".pool-letter").click(letterClick);
+  $(".pool-letter").removeClass("selected");
 }
 
 const uncoverWord = (word) => {
