@@ -44,15 +44,16 @@ const letterClick = (event) => {
 const tryWord = () => {
   if(Object.keys(board.words).includes(word)){
     uncoverWord(word);
-    word = "";
-    pool = {};
   }
+
+  word = "";
+  pool = {};
 }
 
 const uncoverWord = (word) => {
   const letterArr = word.split("");
   const posArr = board.words[word];
-  
+
   for(let i = 0; i < letterArr.length; i++) {
     const square = $(`#${posArr[i][0]}.grid-row #${posArr[i][1]}.square`);
     square.html(letterArr[i]);
