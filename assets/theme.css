@@ -1,5 +1,9 @@
 body {
   background-color: darkred;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .board {
@@ -20,7 +24,6 @@ body {
   flex-direction: row;
 }
 
-
 .square {
   background-color: olive;
   border: 1px solid olive;
@@ -39,4 +42,24 @@ body {
   border: 1px solid blueviolet;
   border-radius: 3px;
   background-color: darkcyan;
+}
+
+.pool {
+  height: 100px;
+  width: 100px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pool-row {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+}
+
+.pool-letter {
+  margin: 5px 5px 5px 5px;
 }
