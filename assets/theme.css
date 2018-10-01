@@ -33,8 +33,8 @@ body {
   max-height: 50px;
   max-width: 50px;
   font-size: 50px;
-  width: calc((100vw - 27px) / 12);
-  height: calc((100vw - 27px) / 12);  
+  /* width: calc((100vw - 27px) / 12);
+  height: calc((100vw - 27px) / 12);   */
 }
 
 .letter {
