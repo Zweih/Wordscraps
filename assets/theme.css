@@ -28,8 +28,8 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-height: 34px;
-  min-width: 34px;
+  min-height: 40px;
+  min-width: 40px;
   max-height: 50px;
   max-width: 50px;
   font-size: 50px;
