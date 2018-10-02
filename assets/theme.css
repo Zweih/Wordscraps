@@ -23,6 +23,7 @@ body {
 }
 
 .square {
+  transition: all .2s ease-in;
   margin: 1px;
   background-color: rgb(161, 106, 161);
   border: 1px solid rgb(161, 106, 161);
@@ -34,14 +35,63 @@ body {
   max-height: 50px;
   max-width: 50px;
   font-size: 50px;
-  width: calc((100vw - 27px) / 12);
-  height: calc((100vw - 27px) / 12);  
+  /* width: calc((100vw - 27px) / 12);
+  height: calc((100vw - 27px) / 12); */
 }
 
 .letter {
   border: 1px solid blueviolet;
   border-radius: 3px;
   background-color: #90DBDC;
+}
+
+.square-reveal {
+  background-color: rgb(0, 184, 184);
+  color: white;
+}
+
+.square-correct {
+  color: blueviolet;
+  background-color: rgb(169, 254, 255);
+}
+
+@media only screen and (max-width: 400px) {
+  .square {
+    font-size: 10vw;
+  }
+}
+
+@media only screen and (min-width: 401px) {
+  .square {
+    font-size: 30px;
+  }
+}
+
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.current-word {
+  transition: all .2s ease-in;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  min-width: 235px;
+  font-size: 50px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: plum;
+  padding: 5px;
+}
+
+.correct {
+  color: cyan;
+}
+
+.incorrect {
+  color: rgb(255, 60, 0);
 }
 
 .pool {
@@ -89,42 +139,9 @@ body {
     margin-bottom: -32px;
 }
 
-.current-word {
-  display: flex;
-  justify-content: center;
-  height: 50px;
-  min-width: 235px;
-  font-size: 50px;
-  margin: 10px;
-  border-radius: 5px;
-  background-color: plum;
-  padding: 5px;
-}
-
 .selected {
   background: purple;
-}
-
-.square-reveal {
-  transition: all .3s ease-in;
-  background-color: rgb(0, 184, 184);
   color: white;
-}
-
-.square-correct {
-  transition: all .2s ease-in;
-  color: blueviolet;
-  background-color: rgb(169, 254, 255);
-}
-
-.correct {
-  transition: all .2s ease-in;
-  color: cyan;
-}
-
-.incorrect {
-  transition: all .2s ease-in;
-  color: rgb(255, 60, 0);
 }
 
 .pool-button {
@@ -150,14 +167,12 @@ body {
   outline: none;
 }
 
-@media only screen and (max-width: 400px) {
-  .square {
-    font-size: 10vw;
-  }
-}
-
-@media only screen and (min-width: 401px) {
-  .square {
-    font-size: 30px;
-  }
+.square, .pool-letter, .pool-button {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                        supported by Chrome and Opera */
 }
