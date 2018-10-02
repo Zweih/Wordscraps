@@ -88,10 +88,12 @@ body {
 
 .correct {
   color: cyan;
+  background-color: rgb(177, 68, 123);
 }
 
 .incorrect {
-  color: rgb(255, 60, 0);
+  color: white;
+  background-color: rgb(255, 60, 0);
 }
 
 .pool {
@@ -135,8 +137,8 @@ body {
 }
 
 .pool-letter:only-child {
-    margin-top: -32px;
-    margin-bottom: -32px;
+  margin-top: -32px;
+  margin-bottom: -32px;
 }
 
 .selected {
