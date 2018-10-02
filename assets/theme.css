@@ -1,5 +1,5 @@
 body {
-  background-color: #dedede;
+  background-color: rgb(161, 106, 161);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,8 +8,8 @@ body {
 }
 
 .board {
-  margin-top: 20px;
-  background-color: #dedede;
+  margin-top: 5px;
+  background-color: rgb(161, 106, 161);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,31 +23,30 @@ body {
 }
 
 .square {
-  background-color: #dedede;
-  border: 1px solid #dedede;
+  margin: 1px;
+  background-color: rgb(161, 106, 161);
+  border: 1px solid rgb(161, 106, 161);
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-height: 40px;
-  min-width: 40px;
+  min-height: 34px;
+  min-width: 34px;
   max-height: 50px;
   max-width: 50px;
   font-size: 50px;
-  /* width: calc((100vw - 27px) / 12);
-  height: calc((100vw - 27px) / 12);   */
+  width: calc((100vw - 27px) / 12);
+  height: calc((100vw - 27px) / 12);  
 }
 
 .letter {
   border: 1px solid blueviolet;
   border-radius: 3px;
-  background-color: rgba(14, 216, 216, 0.418);
+  background-color: #90DBDC;
 }
 
 .pool {
   height: calc((100vw - 27px) / 1.5);
   width: calc((100vw - 27px) / 1.5);
-  /* max-height: 400px;
-  max-width: 400px; */
   max-height: 300px;
   max-width: 300px;
   min-height: 235px;
@@ -115,7 +114,7 @@ body {
 .square-correct {
   transition: all .2s ease-in;
   color: blueviolet;
-  background-color: rgba(14, 216, 216, 0.418);
+  background-color: rgb(169, 254, 255);
 }
 
 .correct {
@@ -129,6 +128,7 @@ body {
 }
 
 .pool-button {
+  transition: all .2s ease-in;
   margin: 20px 0px 0px 0px;
   display: inline-block;
   width: 300px;
@@ -136,8 +136,18 @@ body {
   font-size: 50px;
   font-weight: 400;
   text-align: center;
+  border: none;
   color: #fff;
   background-color: hotpink;
+}
+
+.clicked {
+  transition: all .2s ease-in;
+  background-color: rgb(177, 68, 123);
+}
+
+:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 400px) {

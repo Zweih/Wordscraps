@@ -61,6 +61,7 @@ const tryWord = (evt) => {
   const event = evt || window.event;
   $(".pool-letter").off("click");
   $(event.target).off("click");
+  $(event.target).addClass("clicked");
   console.log(word);
 
   if(Object.keys(board.words).includes(word)){
@@ -86,9 +87,10 @@ const reset = () => {
   $(".current-word").removeClass("incorrect");
   $(".current-word").removeClass("correct");
   $(".square").removeClass("square-correct");
+  $(".pool-letter").removeClass("selected");
+  $(".pool-button").removeClass("clicked")
   $(".pool-letter").click(letterClick);
   $(".pool-button").click(tryWord);
-  $(".pool-letter").removeClass("selected");
 }
 
 const roundWin = () => {
