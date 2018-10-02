@@ -4,6 +4,7 @@ const levels = 10
 let word = "";
 let goal = {};
 const boards = [];
+const dictionary = require("./valid-dictionary/valid-words.json");
 
 $(document).ready(() => {
   for(let i = level; i < levels; i++) {
@@ -11,11 +12,12 @@ $(document).ready(() => {
   }
 
   board = boards[level];
+  pool = board.letters.sort().join("");
   goal = JSON.parse(JSON.stringify(board.words));
-  generateBoard(level);
+  generateBoard();
 });
 
-const generateBoard = (levelNum) => {
+const generateBoard = () => {
   for(let y = 0; y < board.y; y++) {
     const gridRow = $(`<div class="grid-row" id="${y}"></div>`);
     for(let x = 0; x < board.x; x++) {
@@ -67,6 +69,8 @@ const tryWord = (evt) => {
   if(Object.keys(board.words).includes(word)){
     uncoverWord(word);
     $(".current-word").addClass("correct");
+  } else if(dictionary.includes(word)) {
+      console.log("technically correct");
   } else {
     $(".current-word").addClass("incorrect");
   }
