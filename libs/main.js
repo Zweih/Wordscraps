@@ -79,7 +79,6 @@ const letterClick = (event) => {
   const letter = event.target.innerText;
   word += letter;
   $(".current-word").text(word);
-  console.log(letter);
 }
 
 const tryWord = (evt) => {
@@ -87,7 +86,6 @@ const tryWord = (evt) => {
   $(".pool-letter").off("click");
   $(event.target).off("click");
   $(event.target).addClass("clicked");
-  console.log(word);
 
   if(!alreadyDone.includes(word)) {
     if(Object.keys(board.words).includes(word)){
@@ -96,7 +94,6 @@ const tryWord = (evt) => {
       alreadyDone.push(word)
       $(".current-word").addClass("correct");
     } else if(dictionary.includes(word.toLowerCase())) {
-        console.log("technically correct");
         addPoints(word.length, 1);
         alreadyDone.push(word)
     } else {
@@ -154,7 +151,6 @@ const addPoints = (value, multiplier) => {
   displayTime(time);
   $(".info div").addClass("correct");
   $(".points").text(points);
-  console.log(points);
 }
 
 const uncoverWord = (word) => {
