@@ -15,7 +15,6 @@ $(document).ready(() => {
   startGame();
 });
 
-
 const saveScore = () => {
   const name = $("input.name").val() || 'noname';
   const score = points;
@@ -143,7 +142,7 @@ const roundWin = () => {
     $(".current-word").text("");
     $(".board").empty();
     $(".pool-row").empty();
-    generateBoard(level);
+    level < levels ? generateBoard(level) : gameOver();
   }, 2000);
 }
 
@@ -195,6 +194,7 @@ const timeCheck = () => {
 }
 const gameOver = () => {
   clearInterval(timer);
+  points += time * 500;
   $(".pool-letter").off("click");
   $(".pool-button").off("click");
   $("p.score").text(points);
