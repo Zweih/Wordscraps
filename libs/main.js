@@ -17,11 +17,12 @@ $(document).ready(() => {
 
 
 const saveScore = () => {
-  name = $("input.name").val() || 'noname';
+  const name = $("input.name").val() || 'noname';
+  const score = points;
 
   firebase.database().ref().child('scores/').push({
     name,
-    points,
+    score,
   });
 };
 
