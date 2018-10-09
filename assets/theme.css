@@ -372,12 +372,29 @@ a section.link p {
     font-size: 30px;
   }
 
+  .square {
+    width: 3vh;
+    height: 3vh;
+    font-size: 2.5vh;
+  }
+
+  .pool-letter {
+    width: 8vh !important;
+    height: 8vh !important;
+  }
+
+  .p1.pool-row {
+    margin-bottom: -4px;
+  }
+
   .location2 {
     visibility: visible;
   }
 
   .location1 {
     visibility: hidden;
+    height: 0px;
+    width: 0px;
   }
 
   .pool {
