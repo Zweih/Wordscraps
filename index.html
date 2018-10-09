@@ -1,25 +1,106 @@
 <!DOCTYPE html>
-<head>
-  <title>Wordscraps</title>
-  <meta charset="utf-8">
-  <link href="./assets/reset.css" rel="stylesheet" type="text/css">
-  <link href="./assets/theme.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./src/bundle.js" charset="utf-8"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.6, user-scalable=0"> 
-</head>
-<body>
-  <div class="board">
+  <head>
+    <title>Wordscraps</title>
+    <meta charset="utf-8">
+    <link href="./assets/reset.css" rel="stylesheet" type="text/css">
+    <link href="./assets/theme.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script>
+      const config = {
+        apiKey: "AIzaSyCjFrcsyDN65yw3JdQdlIa75JTCKZbYSLQ",
+        authDomain: "wordscraps-2a605.firebaseapp.com",
+        databaseURL: "https://wordscraps-2a605.firebaseio.com",
+        projectId: "wordscraps-2a605",
+        storageBucket: "wordscraps-2a605.appspot.com",
+        messagingSenderId: "743681521951"
+      };
+      firebase.initializeApp(config);
+
+      const query = firebase.database().ref().child('scores/').orderByChild("score").limitToLast(10);
+      
+      let num = 10;
+
+      query.on('child_added', (snapshot) => {
+        childScore = snapshot.val();
+        let scoreBoard = $("#highscore table");
+        let line = (`<tr><td>${num}</td><td>${childScore.name.toUpperCase()}</td><td>${childScore.score}</td></tr>`);
+        $(line).prependTo(scoreBoard);
+        num--;
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script type="text/javascript" src="./src/bundle.js" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.6, user-scalable=0"> 
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+    <a href="#wordscraps" class="active">Wordscraps</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="#highscore" rel="modal:open">High Score</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
   </div>
-  <div class="user-actions">
-    <div class="current-word">
+    <div class="game">
+      <div class="display">
+        <div class="info location2">
+          <div class="time">
+            1:00
+          </div>
+        </div>
+        <div class="board">
+        </div>
+        <div class="info location2">
+          <div class="points">
+            0
+          </div>
+        </div>
+      </div>
+      <div id="highscore" class="modal">
+        <table>
+        </table>
+      </div>
+      <form id="game-over-form" class="modal">
+          <label>SCORE: </label>
+          <p class="score"></p>
+          <label>NAME: <input type="text" maxlength="10" class="name" required/></label>
+          <input type="submit" class="score-submit" value="submit">
+      </form>
+      <div class="container">
+        <div class="status">
+          <div class="info location1">
+            <div class="time">
+              1:00
+            </div>
+            <div class="points">
+              0
+            </div>
+          </div>
+          <div class="current-word">
+          </div>
+        </div>
+      <div class="pool">
+        <div class="pool-row" id="0"></div>
+        <div class="pool-row" id="1"></div>
+        <div class="pool-row" id="2"></div>
+        <div class="pool-row" id="3"></div>
+      </div>
+      <button class="pool-button">TRY WORD</button>
+      </div>
     </div>
-    <div class="pool">
-      <div class="pool-row" id="0"></div>
-      <div class="pool-row" id="1"></div>
-      <div class="pool-row" id="2"></div>
-      <div class="pool-row" id="3"></div>
-    </div>
-    <button class="pool-button">TRY WORD</button>
-  </div> 
-</body>
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+  </body>
+</html>

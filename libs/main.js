@@ -4,9 +4,28 @@ const levels = 10
 let word = "";
 let goal = {};
 const boards = [];
-const dictionary = require("./valid-dictionary/valid-words.json");
+const dictionary = require("./valid-dictionary/40000-dictionary.json");
+let points = 0;
+let alreadyDone = [];
+let time = 60;
+let timer = null;
 
 $(document).ready(() => {
+  $("input.score-submit").click(saveScore);
+  startGame();
+});
+
+
+const saveScore = () => {
+  name = $("input.name").val() || 'noname';
+
+  firebase.database().ref().child('scores/').push({
+    name,
+    points,
+  });
+};
+
+const startGame = () => {
   for(let i = level; i < levels; i++) {
     boards.push(require(`./puzzles/${i}.json`));
   }
@@ -15,7 +34,11 @@ $(document).ready(() => {
   pool = board.letters.sort().join("");
   goal = JSON.parse(JSON.stringify(board.words));
   generateBoard();
-});
+
+  timer = setInterval(() => {
+    timeCheck();
+  }, 1000);
+}
 
 const generateBoard = () => {
   for(let y = 0; y < board.y; y++) {
@@ -66,11 +89,19 @@ const tryWord = (evt) => {
   $(event.target).addClass("clicked");
   console.log(word);
 
-  if(Object.keys(board.words).includes(word)){
-    uncoverWord(word);
-    $(".current-word").addClass("correct");
-  } else if(dictionary.includes(word)) {
-      console.log("technically correct");
+  if(!alreadyDone.includes(word)) {
+    if(Object.keys(board.words).includes(word)){
+      uncoverWord(word);
+      addPoints(word.length, 2);
+      alreadyDone.push(word)
+      $(".current-word").addClass("correct");
+    } else if(dictionary.includes(word.toLowerCase())) {
+        console.log("technically correct");
+        addPoints(word.length, 1);
+        alreadyDone.push(word)
+    } else {
+      $(".current-word").addClass("incorrect");
+    }
   } else {
     $(".current-word").addClass("incorrect");
   }
@@ -90,6 +121,7 @@ const reset = () => {
   $(".current-word").text(word);
   $(".current-word").removeClass("incorrect");
   $(".current-word").removeClass("correct");
+  $(".info div").removeClass("correct");
   $(".square").removeClass("square-correct");
   $(".pool-letter").removeClass("selected");
   $(".pool-button").removeClass("clicked")
@@ -104,14 +136,25 @@ const roundWin = () => {
   $(".pool-button").off("click");
   board = boards[++level];
   goal = JSON.parse(JSON.stringify(board.words));
+  alreadyDone = [];
 
   setTimeout(() => {
     $(".current-word").removeClass("correct");
+    $(".info div").removeClass("correct");
     $(".current-word").text("");
     $(".board").empty();
     $(".pool-row").empty();
     generateBoard(level);
   }, 2000);
+}
+
+const addPoints = (value, multiplier) => {
+  points += 10 * value * multiplier;
+  time += 5 * multiplier;
+  displayTime(time);
+  $(".info div").addClass("correct");
+  $(".points").text(points);
+  console.log(points);
 }
 
 const uncoverWord = (word) => {
@@ -125,4 +168,41 @@ const uncoverWord = (word) => {
   }
 
   delete goal[word];
+}
+
+const displayTime = (timeLeft) => { 
+  const mins = ~~((timeLeft % 3600) / 60);
+  const secs = ~~timeLeft % 60;
+
+  let ret = "";
+
+  ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+  ret += "" + secs;
+
+  $(".time").text(ret);
+}
+
+const timeCheck = () => {
+  if(time <= 0) {
+    gameOver();
+  } else {
+    displayTime(--time);
+
+    if(time < 30) {
+      $(".time").addClass("warning");
+    } else {
+      $(".time").removeClass("warning");
+    }
+  }
+}
+const gameOver = () => {
+  clearInterval(timer);
+  $(".pool-letter").off("click");
+  $(".pool-button").off("click");
+  $("p.score").text(points);
+  $("#game-over-form").modal({
+    escapeClose: false,
+    clickClose: false,
+    showClose: false
+  });
 }

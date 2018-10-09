@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/zweih/wordscraps/issues"
   },
-  "homepage": "https://github.com/zweih/wordscraps#readme"
+  "homepage": "https://github.com/zweih/wordscraps#readme",
+  "dependencies": {
+    "webpack": "^4.20.2"
+  }
 }
