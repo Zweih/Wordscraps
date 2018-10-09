@@ -7,10 +7,12 @@ const boards = [];
 const dictionary = require("./valid-dictionary/40000-dictionary.json");
 let points = 0;
 let alreadyDone = [];
+let letterStack = [];
 let time = 60;
 let timer = null;
 
 $(document).ready(() => {
+  $(".backspace").click(backspace);
   $("input.score-submit").click(saveScore);
   startGame();
 });
@@ -77,8 +79,22 @@ const letterClick = (event) => {
   $(event.target).toggleClass("selected");
   $(event.target).off("click");
   const letter = event.target.innerText;
+  letterStack.push(event.target);
   word += letter;
   $(".current-word").text(word);
+}
+
+const backspace = () => {
+  $(".backspace").toggleClass("down");
+  word = word.slice(0, -1);
+  $(".current-word").text(word);
+  const tempLetter = letterStack.pop();
+  $(tempLetter).removeClass("selected");
+  $(tempLetter).click(letterClick);
+
+  setTimeout( () => {
+    $(".backspace").removeClass("down");
+  }, 100)
 }
 
 const tryWord = (evt) => {
@@ -116,6 +132,7 @@ const tryWord = (evt) => {
 const reset = () => {
   word = "";
   $(".current-word").text(word);
+  letterStack = [];
   $(".current-word").removeClass("incorrect");
   $(".current-word").removeClass("correct");
   $(".current-word").removeClass("used");

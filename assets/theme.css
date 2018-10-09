@@ -99,7 +99,7 @@ body {
   padding-bottom: 20px;
 }
 
-.current-word, .points, .time {
+.current-word, .points, .time, .backspace {
   transition: all .2s ease-in;
   display: flex;
   justify-content: center;
@@ -424,4 +424,34 @@ a section.link p {
   border: none;
   color: #fff;
   background-color: hotpink;
+}
+
+.word {
+  display: flex;
+  align-items: center;
+}
+
+.backspace {
+  transition: all .1s ease-in;
+  min-width: 0%;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.backspace.down {
+  background-color: #5d365d;
+} 
+
+.current-word {
+  margin-left: 86px;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
