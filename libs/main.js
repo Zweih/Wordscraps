@@ -100,7 +100,7 @@ const tryWord = (evt) => {
       $(".current-word").addClass("incorrect");
     }
   } else {
-    $(".current-word").addClass("incorrect");
+    $(".current-word").addClass("used");
   }
 
   if(Object.keys(goal).length < 1) { 
@@ -118,6 +118,7 @@ const reset = () => {
   $(".current-word").text(word);
   $(".current-word").removeClass("incorrect");
   $(".current-word").removeClass("correct");
+  $(".current-word").removeClass("used");
   $(".info div").removeClass("correct");
   $(".square").removeClass("square-correct");
   $(".pool-letter").removeClass("selected");
