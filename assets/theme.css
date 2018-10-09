@@ -280,14 +280,16 @@ a.active {
 }
 
 #highscore.modal,
-#game-over-form.modal,
-#contact.modal {
-  background-color: #dea4dd;
+#game-over-form.modal {
+  background-color:  rgb(161, 106, 161);
 }
 
-#game-over-form div {
+#highscore table, #game-over-form div {
   display: flex;
   flex-direction: column;
+  background-color: #dea4dd;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 #game-over-form label {
