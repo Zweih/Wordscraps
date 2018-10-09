@@ -284,7 +284,18 @@ a.active {
   background-color:  rgb(161, 106, 161);
 }
 
-#highscore table, #game-over-form div {
+#game-over-form.modal {
+  width: auto;
+}
+
+.title {
+  font-size: 50px !important;
+  align-self: center;
+  margin-bottom: 15px;
+}
+
+
+#highscore div, #game-over-form div {
   display: flex;
   flex-direction: column;
   background-color: #dea4dd;
@@ -292,10 +303,19 @@ a.active {
   border-radius: 10px;
 }
 
+#game-over-form div {
+  align-items: center;
+}
+
 #game-over-form label {
   display: flex;
+  font-size: 30px;
   align-items: center;
   margin-top: 10px;
+}
+
+#game-over-form .score {
+  font-size: 30px;
 }
 
 #game-over-form p, #game-over-form input.name {
