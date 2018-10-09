@@ -359,7 +359,7 @@ a section.link p {
     margin-top: 15px;
   }
 
-  .time, .points, .current-word {
+  .time, .points, .current-word, .backspace {
     margin-top: 20px;
     height: 25px;
     min-width: 100px;
