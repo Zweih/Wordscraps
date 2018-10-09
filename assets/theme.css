@@ -178,9 +178,10 @@ body {
   transition: all .2s ease-in;
   margin: 20px 0px 0px 0px;
   display: inline-block;
-  width: 300px;
-  height: 100px;
-  font-size: 50px;
+  width: 200px;
+  height: 60px;
+  font-size: 30px;
+  /* font-size: 50px; */
   font-weight: 400;
   text-align: center;
   border: none;
@@ -284,6 +285,22 @@ a.active {
   background-color: #dea4dd;
 }
 
+#game-over-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+#game-over-form label {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#game-over-form p, #game-over-form input.name {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
 a section.link {
   display: flex;
   flex-direction: row;
@@ -337,4 +354,17 @@ a section.link p {
     height: calc((44vw - 27px) / 7);
     font-size: 35px;
   }
+}
+
+.score-submit {
+  margin: 20px 0px 0px 0px;
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  color: #fff;
+  background-color: hotpink;
 }
