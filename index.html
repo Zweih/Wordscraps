@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <link href="./assets/reset.css" rel="stylesheet" type="text/css">
     <link href="./assets/theme.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
@@ -37,10 +39,30 @@
   </head>
   <body>
     <div class="topnav" id="myTopnav">
-    <a href="#wordscraps" class="active">Wordscraps</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
-    <a href="#highscore" rel="modal:open">High Score</a>
+    <a href="#wordscraps" class="active">
+      <section class="link">
+        <i class="fas fa-puzzle-piece"></i>
+        <p>Wordscraps</p>
+      </section>
+    </a>
+    <a target="_blank" href="https://github.com/zweih/" class="link">
+      <section class="link">
+        <i class="devicon-github-plain"></i>
+        <p>GitHub</p>
+      </section>
+     </a>
+    <a target="_blank" href="https://fernandonunez.io">
+      <section  class="link">
+        <i class="fas fa-sitemap"></i>
+        <p>Portfolio Site</p>
+      </section>
+    </a>
+    <a href="#highscore" rel="modal:open">
+      <section class="link">
+        <i class="fas fa-star"></i>
+        <p>High Score</p>
+      </section>
+    </a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
@@ -60,16 +82,6 @@
           </div>
         </div>
       </div>
-      <div id="highscore" class="modal">
-        <table>
-        </table>
-      </div>
-      <form id="game-over-form" class="modal">
-          <label>SCORE: </label>
-          <p class="score"></p>
-          <label>NAME: <input type="text" maxlength="10" class="name" required/></label>
-          <input type="submit" class="score-submit" value="submit">
-      </form>
       <div class="container">
         <div class="status">
           <div class="info location1">
@@ -92,15 +104,27 @@
       <button class="pool-button">TRY WORD</button>
       </div>
     </div>
+    <div class="modals">
+      <div id="highscore" class="modal">
+        <table>
+        </table>
+      </div>
+      <form id="game-over-form" class="modal">
+          <label>SCORE: </label>
+          <p class="score"></p>
+          <label>NAME: <input type="text" maxlength="10" class="name" required/></label>
+          <input type="submit" class="score-submit" value="submit">
+      </form>
+    </div>
     <script>
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
+      function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+              x.className += " responsive";
+          } else {
+              x.className = "topnav";
+          }
+      }
+      </script>
   </body>
 </html>
