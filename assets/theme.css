@@ -350,7 +350,7 @@ a section.link p {
   margin-left: 10px;
 }
 
-@media only screen and (max-height: 825px) {
+@media only screen and (max-height: 1000px) {
   .game {
     justify-content: space-around;
   }
@@ -359,11 +359,21 @@ a section.link p {
     margin-top: 15px;
   }
 
-  .time, .points, .current-word, .backspace {
-    margin-top: 20px;
+  .time, .points {
+    margin-top: 0px;
     height: 25px;
     min-width: 100px;
     font-size: 25px;
+  }
+
+  .current-word, .backspace {
+    height: 35px;
+    min-width: 150px;
+    font-size: 35px;
+  }
+
+  .current-word {
+    margin-left: 68px !important;
   }
 
   .pool-button {
