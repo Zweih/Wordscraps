@@ -1,6 +1,6 @@
 let board = null;
 let level = 0;
-const levels = 10
+const levels = 15;
 let word = "";
 let goal = {};
 const boards = [];
@@ -13,6 +13,8 @@ let timer = null;
 
 $(document).ready(() => {
   $(".backspace").click(backspace);
+  $("body").keydown(specialClick);
+  $("body").keypress(keyClick);
   $("input.score-submit").click(saveScore);
   startGame();
 });
@@ -27,13 +29,21 @@ const saveScore = () => {
   });
 };
 
+const shuffleBoards = (boards) => {
+  for(let i = boards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [boards[i], boards[j]] = [boards[j], boards[i]];
+  }
+}
+
 const startGame = () => {
-  for(let i = level; i < levels; i++) {
+  for(let i = 0; i < levels; i++) {
     boards.push(require(`./puzzles/${i}.json`));
   }
 
+  shuffleBoards(boards);
+  
   board = boards[level];
-  pool = board.letters.sort().join("");
   goal = JSON.parse(JSON.stringify(board.words));
   generateBoard();
 
@@ -62,12 +72,18 @@ const generateBoard = () => {
       >
         ${board.letters[i]}
       </div>`
-    ); 
+    ).click(letterClick);
+
+    if($("body").data(board.letters[i])) {
+      $("body").data(board.letters[i]).push(letter);
+    } else {
+      $("body").data(board.letters[i], [letter]);
+    }
 
     if(i === 1 || i === 4) {
-      letter.appendTo(`#${i - 1}.pool-row`).click(letterClick);
+      letter.appendTo(`#${i - 1}.pool-row`);
     } else {
-      letter.appendTo(`#${(i % 2) + 1}.pool-row`).click(letterClick);
+      letter.appendTo(`#${(i % 2) + 1}.pool-row`);
     }
   }
 
@@ -76,21 +92,50 @@ const generateBoard = () => {
 
 const letterClick = (event) => {
   event = event || window.event;
+
   $(event.target).toggleClass("selected");
   $(event.target).off("click");
   const letter = event.target.innerText;
+  $("body").data()[letter].pop();
   letterStack.push(event.target);
   word += letter;
   $(".current-word").text(word);
 }
 
+const keyClick = (event) => {
+  event = event || window.event;
+
+  const key = event.key.toUpperCase();
+  const events = $("body").data()[key];
+
+  if(events && events.length > 0) {
+    events[events.length - 1].trigger("click");
+  }
+}
+
+const specialClick = (event) => {
+  event = event || window.event;
+  console.log(event.keyCode);
+
+  if(event.keyCode === 8) {
+    backspace();
+  } else if(event.keyCode === 13) {
+    $(".pool-button").trigger("click");
+  }
+}
+
 const backspace = () => {
   $(".backspace").toggleClass("down");
-  word = word.slice(0, -1);
-  $(".current-word").text(word);
-  const tempLetter = letterStack.pop();
-  $(tempLetter).removeClass("selected");
-  $(tempLetter).click(letterClick);
+
+  if(word.length > 0) {
+    const char = word[word.length - 1];
+    word = word.slice(0, -1);
+    $(".current-word").text(word);
+    const tempLetter = letterStack.pop();
+    $(tempLetter).removeClass("selected");
+    $(tempLetter).click(letterClick);
+    $("body").data()[char].push($(tempLetter));
+  }
 
   setTimeout( () => {
     $(".backspace").removeClass("down");
@@ -100,6 +145,7 @@ const backspace = () => {
 const tryWord = (evt) => {
   const event = evt || window.event;
   $(".pool-letter").off("click");
+  $(".pool-letter").off("keypress");
   $(event.target).off("click");
   $(event.target).addClass("clicked");
 
@@ -142,25 +188,42 @@ const reset = () => {
   $(".pool-button").removeClass("clicked")
   $(".pool-letter").click(letterClick);
   $(".pool-button").click(tryWord);
+  $("body").removeData();
+
+  $(".pool-letter").each(function() {
+    const letter = this.innerText;
+
+    if($("body").data(letter)) {
+      $("body").data(letter).push($(this));
+    } else {
+      $("body").data(letter, [$(this)]);
+    }
+  });
 }
 
 const roundWin = () => {
   $(".current-word").text("ROUND WIN");
   $(".current-word").addClass("correct");
   $(".pool-letter").off("click");
+  $(".pool-letter").off("keypress");
   $(".pool-button").off("click");
-  board = boards[++level];
-  goal = JSON.parse(JSON.stringify(board.words));
-  alreadyDone = [];
+  level++;
 
-  setTimeout(() => {
-    $(".current-word").removeClass("correct");
-    $(".info div").removeClass("correct");
-    $(".current-word").text("");
-    $(".board").empty();
-    $(".pool-row").empty();
-    level < levels ? generateBoard(level) : gameOver();
-  }, 2000);
+  if(level < levels) {
+    board = boards[level];
+    goal = JSON.parse(JSON.stringify(board.words));
+    alreadyDone = [];
+    setTimeout(() => {
+      $(".current-word").removeClass("correct");
+      $(".info div").removeClass("correct");
+      $(".current-word").text("");
+      $(".board").empty();
+      $(".pool-row").empty();
+      generateBoard(level);
+    }, 2000);
+  } else {
+    gameOver();
+  }
 }
 
 const addPoints = (value, multiplier) => {
@@ -213,6 +276,7 @@ const gameOver = () => {
   clearInterval(timer);
   points += time * 500;
   $(".pool-letter").off("click");
+  $(".pool-letter").off("keypress");
   $(".pool-button").off("click");
   $("p.score").text(points);
   $("#game-over-form").modal({

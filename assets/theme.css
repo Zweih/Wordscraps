@@ -14,7 +14,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  height: 90vh;
+  height: 94vh;
 }
 
 .location2 {
@@ -350,7 +350,7 @@ a section.link p {
   margin-left: 10px;
 }
 
-@media only screen and (max-height: 1000px) {
+@media only screen and (max-height: 880px) and (min-width: 425px) {
   .game {
     justify-content: space-around;
   }
