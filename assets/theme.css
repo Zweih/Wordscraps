@@ -1,6 +1,7 @@
 body {
   background-color: rgb(161, 106, 161);
   justify-content: space-evenly;
+  overflow: hidden;
 }
 
 .display {
