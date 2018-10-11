@@ -16,7 +16,23 @@ $(document).ready(() => {
   $("body").keydown(specialClick);
   $("body").keypress(keyClick);
   $("input.score-submit").click(saveScore);
-  startGame();
+  $(".play-button").click(startGame);
+
+  $("#intro").modal({
+    escapeClose: false,
+    clickClose: false,
+    showClose: false
+  });
+
+  for(let i = 0; i < levels; i++) {
+    boards.push(require(`./puzzles/${i}.json`));
+  }
+
+  shuffleBoards(boards);
+  
+  board = boards[level];
+  goal = JSON.parse(JSON.stringify(board.words));
+  generateBoard();
 });
 
 const saveScore = () => {
@@ -37,15 +53,7 @@ const shuffleBoards = (boards) => {
 }
 
 const startGame = () => {
-  for(let i = 0; i < levels; i++) {
-    boards.push(require(`./puzzles/${i}.json`));
-  }
-
-  shuffleBoards(boards);
-  
-  board = boards[level];
-  goal = JSON.parse(JSON.stringify(board.words));
-  generateBoard();
+  $.modal.close();
 
   timer = setInterval(() => {
     timeCheck();
@@ -115,7 +123,6 @@ const keyClick = (event) => {
 
 const specialClick = (event) => {
   event = event || window.event;
-  console.log(event.keyCode);
 
   if(event.keyCode === 8) {
     backspace();
@@ -272,9 +279,12 @@ const timeCheck = () => {
     }
   }
 }
+
 const gameOver = () => {
   clearInterval(timer);
   points += time * 500;
+  $("body").off("keydown");
+  $("body").off("keypress");
   $(".pool-letter").off("click");
   $(".pool-letter").off("keypress");
   $(".pool-button").off("click");

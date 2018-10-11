@@ -66,6 +66,12 @@
         <p>High Score</p>
       </section>
     </a>
+    <a href="#help" rel="modal:open">
+      <section class="link">
+        <i class="fas fa-question-circle"></i>
+        <p>Help</p>
+      </section>
+    </a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
@@ -113,6 +119,34 @@
       </div>
     </div>
     <div class="modals">
+      <div id="intro" class="modal">
+        <div>
+          <p class="title">RULES</p>
+          <ul>
+            <li>Guess words on the puzzle using the pool of letters</li>
+            <li>Each letter may only be used <strong>once per word</strong></li>
+            <li>If the word is on the puzzle you get <strong>10</strong> seconds added to time and <strong>20</strong> points per letter</li>
+            <li>If the word is <strong>not</strong> on the puzzle <strong>but</strong> it does exist you get <strong>5</strong> seconds added to time and <strong>10</strong> points per letter</li>
+            <li>The game continues until either time runs out or you complete all <strong>15</strong> levels</li>
+            <li>There is a bonus of <strong>100 points per second</strong> if the final level is completed</li>
+          </ul>
+          <button class="play-button">PLAY</button>
+        </div>
+      </div>
+      <div id="help" class="modal">
+        <div>
+          <p class="title">RULES</p>
+          <ul>
+            <li>Guess words on the puzzle using the pool of letters</li>
+            <li>Each letter may only be used <strong>once per word</strong></li>
+            <li>You start with <strong>1 minutes</strong></li>
+            <li>If the word is on the puzzle you get <strong>10</strong> seconds added to time and <strong>20</strong> points per letter</li>
+            <li>If the word is <strong>not</strong> on the puzzle <strong>but</strong> it does exist you get <strong>5</strong> seconds added to time and <strong>10</strong> points per letter</li>
+            <li>The game continues until either time runs out or you complete all <strong>15</strong> levels</li>
+            <li>There is a bonus of <strong>100 points per second</strong> if the final level is completed</li>
+          </ul>
+        </div>
+      </div>
       <div id="highscore" class="modal">
         <div>
           <p class="title">HIGH SCORE</p>

@@ -299,8 +299,32 @@ a.active {
 }
 
 #highscore.modal,
-#game-over-form.modal {
+#game-over-form.modal,
+#help.modal,
+#intro.modal {
   background-color:  rgb(161, 106, 161);
+}
+
+#help div,
+#intro div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#help ul,
+#intro ul {
+  list-style-type: square;
+}
+
+#help li,
+#intro li {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+#intro strong {
+  font-weight: 600;
 }
 
 #game-over-form.modal {
@@ -314,7 +338,10 @@ a.active {
 }
 
 
-#highscore div, #game-over-form div {
+#highscore div,
+#game-over-form div,
+#help div,
+#intro div {
   display: flex;
   flex-direction: column;
   background-color: #dea4dd;
@@ -424,7 +451,7 @@ a section.link p {
   }
 }
 
-.score-submit {
+.score-submit, .play-button {
   margin: 20px 0px 0px 0px;
   display: inline-block;
   width: 100px;
@@ -435,6 +462,7 @@ a section.link p {
   border: none;
   color: #fff;
   background-color: hotpink;
+  cursor: pointer;
 }
 
 .word {
